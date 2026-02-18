@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>セミナーアンケート｜人が辞めない・育つ組織へ！</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a5276;
+    --primary-light: #2980b9;
+    --accent: #e67e22;
+    --accent-warm: #d35400;
+    --bg: #f7f5f2;
+    --bg-card: #ffffff;
+    --text: #2c3e50;
+    --text-light: #5d6d7e;
+    --text-muted: #95a5a6;
+    --border: #dce1e6;
+    --border-focus: #2980b9;
+    --success: #27ae60;
+    --error: #e74c3c;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.1);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.7;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #1a5276 0%, #2471a3 40%, #1a8a6e 100%);
+    padding: 48px 24px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.06) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(255,255,255,0.04) 0%, transparent 50%);
+    animation: heroShimmer 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroShimmer {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-5%, 5%); }
+  }
+
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 680px; margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; font-size: 13px; font-weight: 500;
+    padding: 6px 18px; border-radius: 50px;
+    margin-bottom: 20px; letter-spacing: 0.5px;
+  }
+
+  .hero h1 {
+    color: #fff;
+    font-size: clamp(22px, 4.5vw, 32px);
+    font-weight: 700; line-height: 1.5; margin-bottom: 12px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+
+  .hero h1 .highlight { color: #f9e79f; }
+
+  .hero p {
+    color: rgba(255,255,255,0.85);
+    font-size: 15px; line-height: 1.8;
+  }
+
+  .form-container {
+    max-width: 680px;
+    margin: -24px auto 40px;
+    padding: 0 16px;
+    position: relative; z-index: 2;
+  }
+
+  .form-section {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 32px 28px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(0,0,0,0.04);
+    animation: fadeUp 0.5s ease-out both;
+  }
+
+  .form-section:nth-child(1) { animation-delay: 0.05s; }
+  .form-section:nth-child(2) { animation-delay: 0.1s; }
+  .form-section:nth-child(3) { animation-delay: 0.15s; }
+  .form-section:nth-child(4) { animation-delay: 0.2s; }
+  .form-section:nth-child(5) { animation-delay: 0.25s; }
+  .form-section:nth-child(6) { animation-delay: 0.3s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; padding-bottom: 16px;
+    border-bottom: 2px solid #eef2f5;
+  }
+
+  .section-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+
+  .section-icon.blue { background: #eaf2f8; }
+  .section-icon.orange { background: #fdf2e9; }
+  .section-icon.green { background: #e8f8f0; }
+  .section-icon.purple { background: #f0e6f6; }
+
+  .section-title { font-size: 17px; font-weight: 700; color: var(--primary); }
+
+  .form-group { margin-bottom: 24px; }
+  .form-group:last-child { margin-bottom: 0; }
+
+  label {
+    display: block; font-size: 15px; font-weight: 600;
+    color: var(--text); margin-bottom: 8px;
+  }
+
+  .required {
+    display: inline-block; background: var(--error); color: #fff;
+    font-size: 11px; font-weight: 600; padding: 2px 7px;
+    border-radius: 4px; margin-left: 8px; vertical-align: middle;
+  }
+
+  .hint {
+    display: block; font-size: 13px; color: var(--text-muted);
+    margin-top: 4px; margin-bottom: 8px; font-weight: 400;
+  }
+
+  input[type="text"], input[type="email"], textarea, select {
+    width: 100%; padding: 12px 16px; font-size: 15px;
+    font-family: inherit; border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm); background: #fff;
+    color: var(--text); transition: all 0.2s ease; outline: none;
+  }
+
+  input[type="text"]:focus, input[type="email"]:focus,
+  textarea:focus, select:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(41,128,185,0.12);
+  }
+
+  textarea { resize: vertical; min-height: 100px; }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235d6d7e' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px; cursor: pointer;
+  }
+
+  .rating-scale {
+    display: flex; gap: 0; border-radius: var(--radius-sm);
+    overflow: hidden; border: 1.5px solid var(--border);
+  }
+
+  .rating-scale label {
+    flex: 1; text-align: center; padding: 12px 8px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: all 0.2s ease; border-right: 1px solid var(--border);
+    margin-bottom: 0; user-select: none; background: #fff;
+  }
+
+  .rating-scale label:last-child { border-right: none; }
+  .rating-scale input[type="radio"] { display: none; }
+
+  .rating-scale label:has(input:checked) {
+    background: var(--primary); color: #fff;
+  }
+
+  .rating-scale label:hover { background: #eaf2f8; }
+  .rating-scale label:has(input:checked):hover {
+    background: var(--primary-light); color: #fff;
+  }
+
+  .radio-group { display: flex; flex-direction: column; gap: 10px; }
+
+  .radio-option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm); cursor: pointer;
+    transition: all 0.2s ease; background: #fff;
+  }
+
+  .radio-option:hover { border-color: var(--primary-light); background: #f8fbfd; }
+  .radio-option:has(input:checked) { border-color: var(--primary); background: #eaf2f8; }
+
+  .radio-option input[type="radio"] {
+    width: 18px; height: 18px; accent-color: var(--primary);
+    cursor: pointer; flex-shrink: 0;
+  }
+
+  .radio-option span { font-size: 14px; font-weight: 500; }
+
+  .checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+
+  .checkbox-option {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px; border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm); cursor: pointer;
+    transition: all 0.2s ease; background: #fff;
+  }
+
+  .checkbox-option:hover { border-color: var(--primary-light); background: #f8fbfd; }
+  .checkbox-option:has(input:checked) { border-color: var(--primary); background: #eaf2f8; }
+
+  .checkbox-option input[type="checkbox"] {
+    width: 18px; height: 18px; accent-color: var(--primary);
+    cursor: pointer; flex-shrink: 0; margin-top: 1px;
+  }
+
+  .checkbox-option span { font-size: 14px; font-weight: 500; line-height: 1.5; }
+
+  .submit-section { text-align: center; padding: 36px 28px; }
+
+  .submit-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: linear-gradient(135deg, var(--primary) 0%, #2471a3 100%);
+    color: #fff; border: none; padding: 16px 56px;
+    font-size: 16px; font-weight: 700; font-family: inherit;
+    border-radius: 50px; cursor: pointer; transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(26,82,118,0.3); letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(26,82,118,0.4);
+  }
+
+  .submit-btn:active { transform: translateY(0); }
+
+  .submit-btn:disabled {
+    opacity: 0.7; cursor: not-allowed; transform: none;
+  }
+
+  .privacy-note {
+    margin-top: 16px; font-size: 12px; color: var(--text-muted); line-height: 1.6;
+  }
+
+  /* Loading Spinner */
+  .spinner {
+    display: none;
+    width: 20px; height: 20px;
+    border: 2.5px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+
+  .submit-btn.loading .spinner { display: inline-block; }
+  .submit-btn.loading .btn-text { display: none; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Thank You */
+  .thank-you {
+    display: none; text-align: center; padding: 60px 28px;
+    animation: fadeUp 0.5s ease-out;
+  }
+
+  .thank-you.show { display: block; }
+
+  .thank-you-icon {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 36px; margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(39,174,96,0.3);
+  }
+
+  .thank-you h2 {
+    font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 12px;
+  }
+
+  .thank-you p { font-size: 15px; color: var(--text-light); line-height: 1.8; }
+
+  /* Error Toast */
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: #e74c3c; color: #fff; padding: 14px 28px;
+    border-radius: 10px; font-size: 14px; font-weight: 500;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2); z-index: 1000;
+    opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
+  }
+
+  .toast.show { opacity: 1; pointer-events: auto; }
+
+  .footer {
+    text-align: center; padding: 24px; font-size: 12px; color: var(--text-muted);
+  }
+
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--primary-light));
+    z-index: 100; transition: width 0.3s ease;
+  }
+
+  .form-group.error input,
+  .form-group.error textarea,
+  .form-group.error select { border-color: var(--error); }
+
+  .error-msg {
+    color: var(--error); font-size: 13px; margin-top: 6px; display: none;
+  }
+
+  .form-group.error .error-msg { display: block; }
+
+  @media (max-width: 600px) {
+    .form-section { padding: 24px 20px; }
+    .hero { padding: 36px 20px 48px; }
+    .hero h1 { font-size: 22px; }
+    .rating-scale label { padding: 10px 4px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar" style="width: 0%"></div>
+<div class="toast" id="toast"></div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">無料セミナー アンケート</div>
+    <h1><span class="highlight">人が辞めない・育つ組織へ！</span><br>社員定着と成長を支える<br>リーダーシップ</h1>
+    <p>本日はセミナーにご参加いただきありがとうございます。<br>今後のセミナー運営の改善に向けて、皆さまのご意見をお聞かせください。</p>
+  </div>
+</div>
+
+<!-- Form -->
+<div class="form-container" id="formContainer">
+  <form id="surveyForm" novalidate>
+
+    <!-- Section 1: 基本情報 -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-icon blue">👤</div>
+        <div class="section-title">基本情報</div>
+      </div>
+
+      <div class="form-group">
+        <label>会社名・団体名<span class="required">必須</span></label>
+        <input type="text" name="company" placeholder="例）株式会社○○" required>
+        <div class="error-msg">会社名・団体名をご入力ください</div>
+      </div>
+
+      <div class="form-group">
+        <label>お名前<span class="required">必須</span></label>
+        <input type="text" name="name" placeholder="例）山田 太郎" required>
+        <div class="error-msg">お名前をご入力ください</div>
+      </div>
+
+      <div class="form-group">
+        <label>役職・お立場</label>
+        <select name="position">
+          <option value="">選択してください</option>
+          <option value="経営者・代表">経営者・代表</option>
+          <option value="役員">役員</option>
+          <option value="部長・マネージャー">部長・マネージャー</option>
+          <option value="課長・リーダー">課長・リーダー</option>
+          <option value="人事・総務担当">人事・総務担当</option>
+          <option value="一般社員">一般社員</option>
+          <option value="その他">その他</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>従業員数</label>
+        <select name="employees">
+          <option value="">選択してください</option>
+          <option value="1〜10名">1〜10名</option>
+          <option value="11〜30名">11〜30名</option>
+          <option value="31〜50名">31〜50名</option>
+          <option value="51〜100名">51〜100名</option>
+          <option value="101〜300名">101〜300名</option>
+          <option value="301名以上">301名以上</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Section 2: 参加理由 -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-icon orange">💡</div>
+        <div class="section-title">セミナーへの参加理由</div>
+      </div>
+
+      <div class="form-group">
+        <label>本セミナーに参加された理由をお聞かせください<span class="required">必須</span></label>
+        <span class="hint">当てはまるものをすべてお選びください</span>
+        <div class="checkbox-group">
+          <label class="checkbox-option">
+            <input type="checkbox" name="reason" value="社員の離職率が高く、定着率を改善したい">
+            <span>社員の離職率が高く、定着率を改善したい</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="reason" value="社員の育成・成長支援の方法を学びたい">
+            <span>社員の育成・成長支援の方法を学びたい</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="reason" value="管理職・リーダーのマネジメント力を向上させたい">
+            <span>管理職・リーダーのマネジメント力を向上させたい</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="reason" value="職場の雰囲気・組織風土を改善したい">
+            <span>職場の雰囲気・組織風土を改善したい</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="reason" value="採用した人材がすぐに辞めてしまう悩みがある">
+            <span>採用した人材がすぐに辞めてしまう悩みがある</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="reason" value="自身のリーダーシップスキルを磨きたい">
+            <span>自身のリーダーシップスキルを磨きたい</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="reason" value="その他">
+            <span>その他</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>上記で「その他」を選択された方は、具体的にお聞かせください</label>
+        <textarea name="reason_other" rows="2" placeholder="ご自由にご記入ください"></textarea>
+      </div>
+    </div>
+
+    <!-- Section 3: セミナー内容 -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-icon green">📊</div>
+        <div class="section-title">セミナー内容について</div>
+      </div>
+
+      <div class="form-group">
+        <label>セミナー全体の満足度<span class="required">必須</span></label>
+        <div class="rating-scale">
+          <label><input type="radio" name="satisfaction" value="5" required>大変満足</label>
+          <label><input type="radio" name="satisfaction" value="4">満足</label>
+          <label><input type="radio" name="satisfaction" value="3">普通</label>
+          <label><input type="radio" name="satisfaction" value="2">やや不満</label>
+          <label><input type="radio" name="satisfaction" value="1">不満</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>セミナーの中で参考になったこと<span class="required">必須</span></label>
+        <span class="hint">特に参考になった点・印象に残った点をお聞かせください</span>
+        <textarea name="helpful" rows="4" placeholder="例）社員との1on1ミーティングの進め方が具体的で、すぐに実践できそうだと思いました。" required></textarea>
+        <div class="error-msg">参考になったことをご入力ください</div>
+      </div>
+
+      <div class="form-group">
+        <label>もっと詳しく知りたいと思うこと<span class="required">必須</span></label>
+        <span class="hint">さらに深く学びたいテーマや、掘り下げてほしかった点があればお聞かせください</span>
+        <textarea name="want_to_know" rows="4" placeholder="例）離職の兆候を早期に察知するための具体的な方法について、もっと詳しく知りたいです。" required></textarea>
+        <div class="error-msg">詳しく知りたいことをご入力ください</div>
+      </div>
+    </div>
+
+    <!-- Section 4: 自社の課題 -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-icon purple">🏢</div>
+        <div class="section-title">貴社の現状について</div>
+      </div>
+
+      <div class="form-group">
+        <label>現在、組織運営で特にお困りのことはどれですか？</label>
+        <span class="hint">当てはまるものをすべてお選びください</span>
+        <div class="checkbox-group">
+          <label class="checkbox-option">
+            <input type="checkbox" name="challenge" value="若手社員の早期離職が多い">
+            <span>若手社員の早期離職が多い</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="challenge" value="中堅社員・幹部候補が辞めてしまう">
+            <span>中堅社員・幹部候補が辞めてしまう</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="challenge" value="社員の育成体制が整っていない">
+            <span>社員の育成体制が整っていない</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="challenge" value="管理職のマネジメントスキルに不安がある">
+            <span>管理職のマネジメントスキルに不安がある</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="challenge" value="社内コミュニケーションが不足している">
+            <span>社内コミュニケーションが不足している</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="challenge" value="社員のモチベーション・エンゲージメントが低い">
+            <span>社員のモチベーション・エンゲージメントが低い</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="challenge" value="その他">
+            <span>その他</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: 講師への相談 -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-icon blue">🤝</div>
+        <div class="section-title">講師への相談について</div>
+      </div>
+
+      <div class="form-group">
+        <label>講師に相談してみたいと思いますか？<span class="required">必須</span></label>
+        <span class="hint">社員定着やリーダーシップに関して、個別にご相談いただくことも可能です</span>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="consult" value="思う" required>
+            <span>思う（ぜひ相談したい）</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="consult" value="やや思う">
+            <span>やや思う（機会があれば相談したい）</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="consult" value="思わない">
+            <span>思わない（今のところ必要ない）</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>相談してみたい内容があれば、お聞かせください</label>
+        <textarea name="consult_detail" rows="3" placeholder="例）部下との信頼関係の築き方について相談したいです。"></textarea>
+      </div>
+    </div>
+
+    <!-- Section 6: ご意見・ご要望 -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-icon orange">✉️</div>
+        <div class="section-title">ご意見・ご要望</div>
+      </div>
+
+      <div class="form-group">
+        <label>今後のセミナーで取り上げてほしいテーマ等がございましたら、ご自由にお書きください</label>
+        <textarea name="feedback" rows="4" placeholder="セミナーへのご感想、今後のご要望、講師へのメッセージなど、何でもお気軽にお書きください。"></textarea>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="form-section submit-section">
+      <button type="submit" class="submit-btn" id="submitBtn">
+        <span class="btn-text">アンケートを送信する →</span>
+        <div class="spinner"></div>
+      </button>
+      <p class="privacy-note">※ご記入いただいた情報は、セミナー運営の改善および<br>今後のご案内にのみ使用いたします。</p>
+    </div>
+
+  </form>
+
+  <!-- Thank You -->
+  <div class="thank-you" id="thankYou">
+    <div class="thank-you-icon">✓</div>
+    <h2>ご回答ありがとうございました</h2>
+    <p>アンケートを受け付けました。<br>いただいたご意見は今後のセミナー運営に<br>活用させていただきます。</p>
+  </div>
+</div>
+
+<div class="footer">
+  &copy; NMR流通総合研究所｜無料セミナーアンケート
+</div>
+
+<script>
+// =====================================================
+// ★★★ ここにGAS WebアプリのURLを貼り付けてください ★★★
+// =====================================================
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbzhX1mfnmrt0blytCshEHj6fU7D9IjotaRXZpOcYebnsqili9JK2HBlpyqdt4TsGGFZ/exec';
+// =====================================================
+
+const form = document.getElementById('surveyForm');
+const progressBar = document.getElementById('progressBar');
+const submitBtn = document.getElementById('submitBtn');
+const toast = document.getElementById('toast');
+
+// ---------- Progress Bar ----------
+function updateProgress() {
+  const allFields = form.querySelectorAll('input[required], textarea[required]');
+  const requiredGroups = {};
+  let filled = 0, total = 0;
+
+  allFields.forEach(field => {
+    if (field.type === 'radio') {
+      const name = field.name;
+      if (!requiredGroups[name]) { requiredGroups[name] = false; total++; }
+      if (field.checked) requiredGroups[name] = true;
+    } else {
+      total++;
+      if (field.value.trim() !== '') filled++;
+    }
+  });
+
+  for (const name in requiredGroups) {
+    if (requiredGroups[name]) filled++;
+  }
+
+  progressBar.style.width = (total > 0 ? (filled / total) * 100 : 0) + '%';
+}
+
+form.addEventListener('input', updateProgress);
+form.addEventListener('change', updateProgress);
+
+// ---------- Toast ----------
+function showToast(msg, duration = 4000) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), duration);
+}
+
+// ---------- Collect Form Data ----------
+function collectFormData() {
+  const data = {};
+
+  // テキスト・テキストエリア・セレクト
+  data.company      = form.company.value.trim();
+  data.name         = form.name.value.trim();
+  data.position     = form.position.value;
+  data.employees    = form.employees.value;
+  data.reason_other = form.reason_other.value.trim();
+  data.helpful      = form.helpful.value.trim();
+  data.want_to_know = form.want_to_know.value.trim();
+  data.consult_detail = form.consult_detail.value.trim();
+  data.feedback     = form.feedback.value.trim();
+
+  // ラジオボタン
+  const satisfaction = form.querySelector('input[name="satisfaction"]:checked');
+  data.satisfaction = satisfaction ? satisfaction.value : '';
+
+  const consult = form.querySelector('input[name="consult"]:checked');
+  data.consult = consult ? consult.value : '';
+
+  // チェックボックス（カンマ区切り）
+  const reasons = Array.from(form.querySelectorAll('input[name="reason"]:checked'))
+    .map(cb => cb.value);
+  data.reason = reasons.join('、');
+
+  const challenges = Array.from(form.querySelectorAll('input[name="challenge"]:checked'))
+    .map(cb => cb.value);
+  data.challenge = challenges.join('、');
+
+  return data;
+}
+
+// ---------- Validation ----------
+function validateForm() {
+  let isValid = true;
+
+  // Required text / textarea
+  form.querySelectorAll('input[type="text"][required], textarea[required]').forEach(input => {
+    const group = input.closest('.form-group');
+    if (input.value.trim() === '') {
+      group.classList.add('error');
+      isValid = false;
+    } else {
+      group.classList.remove('error');
+    }
+  });
+
+  // Required radios
+  ['satisfaction', 'consult'].forEach(name => {
+    if (!form.querySelector(`input[name="${name}"]:checked`)) isValid = false;
+  });
+
+  // Required checkboxes (reason)
+  if (form.querySelectorAll('input[name="reason"]:checked').length === 0) isValid = false;
+
+  return isValid;
+}
+
+// ---------- Submit ----------
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  if (!validateForm()) {
+    const firstErr = form.querySelector('.form-group.error');
+    if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    showToast('必須項目をすべてご入力ください');
+    return;
+  }
+
+  // Loading state
+  submitBtn.classList.add('loading');
+  submitBtn.disabled = true;
+
+  const data = collectFormData();
+
+  try {
+    const response = await fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',  // GAS WebアプリはCORS非対応のため
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    // no-cors の場合 response.ok は判定できないため、送信成功として扱う
+    showSuccess();
+
+  } catch (error) {
+    console.error('送信エラー:', error);
+    showToast('送信中にエラーが発生しました。もう一度お試しください。');
+    submitBtn.classList.remove('loading');
+    submitBtn.disabled = false;
+  }
+});
+
+function showSuccess() {
+  document.querySelectorAll('#formContainer .form-section').forEach(s => {
+    s.style.display = 'none';
+  });
+  document.getElementById('thankYou').classList.add('show');
+  progressBar.style.width = '100%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Remove error on input
+form.querySelectorAll('input, textarea, select').forEach(el => {
+  el.addEventListener('input', function() {
+    this.closest('.form-group')?.classList.remove('error');
+  });
+});
+</script>
+
+</body>
+</html>
