@@ -910,8 +910,14 @@
       allFields.forEach(field => {
         if (field.type === 'radio') {
           const name = field.name;
-          if (!requiredGroups[name]) { requiredGroups[name] = false; total++; }
-          if (field.checked) requiredGroups[name] = true;
+          if (!requiredGroups[name]) {
+            requiredGroups[name] = false;
+            total++;
+            // 同じnameの全ラジオボタンをチェック
+            if (form.querySelector(`input[name="${name}"]:checked`)) {
+              requiredGroups[name] = true;
+            }
+          }
         } else {
           total++;
           if (field.value.trim() !== '') filled++;
