@@ -82,7 +82,9 @@
     }
 
     .hero-badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -555,14 +557,12 @@
     }
 
     .hero-logo {
-      width: 80px;
-      height: 80px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       object-fit: contain;
-      margin-bottom: 16px;
       background: #fff;
-      padding: 8px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      padding: 2px;
     }
 
     .footer-logo {
@@ -633,8 +633,7 @@
   <!-- Hero -->
   <div class="hero">
     <div class="hero-content">
-      <img src="nmr-logo.png" alt="NMR流通総合研究所" class="hero-logo">
-      <div class="hero-badge">無料セミナー アンケート</div>
+      <div class="hero-badge">無料セミナー アンケート<img src="nmr-logo.png" alt="NMR流通総合研究所" class="hero-logo"></div>
       <h1><span class="highlight">人が辞めない・育つ組織へ！</span><br>社員定着と成長を支える<br>リーダーシップ</h1>
       <p>本日はセミナーにご参加いただきありがとうございます。<br>今後のセミナー運営の改善に向けて、皆さまのご意見をお聞かせください。</p>
     </div>
