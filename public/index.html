@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>セミナーアンケート｜人が辞めない・育つ組織へ！</title>
+  <title>セミナーアンケート｜強いサプライチェーンの作り方</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
     rel="stylesheet">
@@ -158,6 +158,14 @@
       animation-delay: 0.3s;
     }
 
+    .form-section:nth-child(7) {
+      animation-delay: 0.35s;
+    }
+
+    .form-section:nth-child(8) {
+      animation-delay: 0.4s;
+    }
+
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -204,6 +212,10 @@
 
     .section-icon.purple {
       background: #f0e6f6;
+    }
+
+    .section-icon.teal {
+      background: #e0f2f1;
     }
 
     .section-title {
@@ -420,6 +432,107 @@
       line-height: 1.5;
     }
 
+    .diagnosis-category {
+      margin-bottom: 20px;
+    }
+
+    .diagnosis-category:last-child {
+      margin-bottom: 0;
+    }
+
+    .diagnosis-category-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      background: #eaf2f8;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .diagnosis-hint {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: #fdf2e9;
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .consult-card {
+      background: linear-gradient(135deg, #1a5276 0%, #2471a3 50%, #1a8a6e 100%);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      text-align: center;
+      color: #fff;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .consult-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .consult-card-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .consult-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .consult-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .consult-card p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 20px;
+    }
+
+    .consult-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      color: var(--primary);
+      padding: 14px 32px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .consult-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .consult-sub {
+      margin-top: 14px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
     .submit-section {
       text-align: center;
       padding: 36px 28px;
@@ -467,7 +580,6 @@
       line-height: 1.6;
     }
 
-    /* Loading Spinner */
     .spinner {
       display: none;
       width: 20px;
@@ -492,7 +604,6 @@
       }
     }
 
-    /* Thank You */
     .thank-you {
       display: none;
       text-align: center;
@@ -528,9 +639,29 @@
       font-size: 15px;
       color: var(--text-light);
       line-height: 1.8;
+      margin-bottom: 24px;
     }
 
-    /* Error Toast */
+    .thank-you-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--primary) 0%, #2471a3 100%);
+      color: #fff;
+      padding: 14px 32px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 16px rgba(26, 82, 118, 0.3);
+    }
+
+    .thank-you-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(26, 82, 118, 0.4);
+    }
+
     .toast {
       position: fixed;
       bottom: 24px;
@@ -626,6 +757,14 @@
         padding: 10px 4px;
         font-size: 12px;
       }
+
+      .consult-card {
+        padding: 28px 20px;
+      }
+
+      .consult-card h3 {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
@@ -639,8 +778,8 @@
   <div class="hero">
     <div class="hero-content">
       <div class="hero-badge"><img src="nmr-logo.png" alt="NMR流通総合研究所" class="hero-logo">無料セミナー アンケート</div>
-      <h1><span class="highlight">人が辞めない・育つ組織へ！</span><br>社員定着と成長を支える<br>リーダーシップ</h1>
-      <p>本日はセミナーにご参加いただきありがとうございます。<br>今後のセミナー運営の改善に向けて、皆さまのご意見をお聞かせください。<br>※アンケートは5分程度で完了します。</p>
+      <h1><span class="highlight">強いサプライチェーンの作り方</span><br>サプライチェーン対策評価制度<br>（2026年10月運用開始）に向けて</h1>
+      <p>本日はセミナーにご参加いただきありがとうございます。<br>今後のセミナー運営の改善と、皆さまの組織課題の把握のため、<br>ご意見をお聞かせください。※5分程度で完了します。</p>
     </div>
   </div>
 
@@ -668,6 +807,23 @@
         </div>
 
         <div class="form-group">
+          <label>業種・業界<span class="required">必須</span></label>
+          <select name="industry" required>
+            <option value="">選択してください</option>
+            <option value="建設業">建設業</option>
+            <option value="製造業">製造業</option>
+            <option value="小売業">小売業</option>
+            <option value="飲食業">飲食業</option>
+            <option value="サービス業">サービス業</option>
+            <option value="物流業">物流業</option>
+            <option value="卸売業">卸売業</option>
+            <option value="IT業界">IT業界</option>
+            <option value="その他">その他</option>
+          </select>
+          <div class="error-msg">業種・業界をご選択ください</div>
+        </div>
+
+        <div class="form-group">
           <label>役職・お立場</label>
           <select name="position">
             <option value="">選択してください</option>
@@ -675,7 +831,9 @@
             <option value="役員">役員</option>
             <option value="部長・マネージャー">部長・マネージャー</option>
             <option value="課長・リーダー">課長・リーダー</option>
-            <option value="人事・総務担当">人事・総務担当</option>
+            <option value="購買・調達担当">購買・調達担当</option>
+            <option value="物流・SCM担当">物流・SCM担当</option>
+            <option value="経営企画・DX担当">経営企画・DX担当</option>
             <option value="一般社員">一般社員</option>
             <option value="その他">その他</option>
           </select>
@@ -695,28 +853,36 @@
           <span class="hint">当てはまるものをすべてお選びください</span>
           <div class="checkbox-group">
             <label class="checkbox-option">
-              <input type="checkbox" name="reason" value="社員の離職率が高く、定着率を改善したい">
-              <span>社員の離職率が高く、定着率を改善したい</span>
+              <input type="checkbox" name="reason" value="サプライチェーン対策評価制度について知りたかった">
+              <span>サプライチェーン対策評価制度について知りたかった</span>
             </label>
             <label class="checkbox-option">
-              <input type="checkbox" name="reason" value="社員の育成・成長支援の方法を学びたい">
-              <span>社員の育成・成長支援の方法を学びたい</span>
+              <input type="checkbox" name="reason" value="取引先からチェックリスト等の対応を求められて困っている">
+              <span>取引先からチェックリスト等の対応を求められて困っている</span>
             </label>
             <label class="checkbox-option">
-              <input type="checkbox" name="reason" value="管理職・リーダーのマネジメント力を向上させたい">
-              <span>管理職・リーダーのマネジメント力を向上させたい</span>
+              <input type="checkbox" name="reason" value="原価高騰・コスト上昇への対策を知りたい">
+              <span>原価高騰・コスト上昇への対策を知りたい</span>
             </label>
             <label class="checkbox-option">
-              <input type="checkbox" name="reason" value="職場の雰囲気・組織風土を改善したい">
-              <span>職場の雰囲気・組織風土を改善したい</span>
+              <input type="checkbox" name="reason" value="納期遅延・物流問題への対策を知りたい">
+              <span>納期遅延・物流問題への対策を知りたい</span>
             </label>
             <label class="checkbox-option">
-              <input type="checkbox" name="reason" value="採用した人材がすぐに辞めてしまう悩みがある">
-              <span>採用した人材がすぐに辞めてしまう悩みがある</span>
+              <input type="checkbox" name="reason" value="人手不足・技術継承の課題を解決したい">
+              <span>人手不足・技術継承の課題を解決したい</span>
             </label>
             <label class="checkbox-option">
-              <input type="checkbox" name="reason" value="自身のリーダーシップスキルを磨きたい">
-              <span>自身のリーダーシップスキルを磨きたい</span>
+              <input type="checkbox" name="reason" value="業務の標準化・DX化を進めたい">
+              <span>業務の標準化・DX化を進めたい</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="reason" value="仕入先とのパートナーシップ構築を考えている">
+              <span>仕入先とのパートナーシップ構築を考えている</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="reason" value="競合との差別化・ブランディングに関心がある">
+              <span>競合との差別化・ブランディングに関心がある</span>
             </label>
             <label class="checkbox-option">
               <input type="checkbox" name="reason" value="その他">
@@ -752,7 +918,8 @@
         <div class="form-group">
           <label>セミナーの中で参考になったこと<span class="required">必須</span></label>
           <span class="hint">特に参考になった点・印象に残った点をお聞かせください</span>
-          <textarea name="helpful" rows="4" placeholder="例）小さな成功体験を積ませて承認するという育成の流れが具体的で、すぐに現場で実践できそうだと感じました。"
+          <textarea name="helpful" rows="4"
+            placeholder="例）業務フローを標準化することでムラ・無駄が省けた建設業の事例が具体的で、自社にも応用できそうだと感じました。"
             required></textarea>
           <div class="error-msg">参考になったことをご入力ください</div>
         </div>
@@ -760,88 +927,143 @@
         <div class="form-group">
           <label>もっと詳しく知りたいと思うこと<span class="required">必須</span></label>
           <span class="hint">さらに深く学びたいテーマや、掘り下げてほしかった点があればお聞かせください</span>
-          <textarea name="want_to_know" rows="4" placeholder="例）管理型から支援型リーダーシップへの移行について、段階的に進める具体的なステップをもっと詳しく知りたいです。"
+          <textarea name="want_to_know" rows="4"
+            placeholder="例）戦略B（標準化と効率化）のシステム導入を、どこからスモールスタートすべきか具体的に知りたいです。"
             required></textarea>
           <div class="error-msg">詳しく知りたいことをご入力ください</div>
         </div>
+
+        <div class="form-group">
+          <label>本日紹介された3つの戦略のうち、最も関心のあるものはどれですか？</label>
+          <span class="hint">業界事例の置き換えがしやすかった戦略をお選びください</span>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="strategy_interest" value="戦略A: 商流の最適化（仕入先パートナーシップ）">
+              <span>戦略A: 商流の最適化（仕入先とのパートナーシップ構築）</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="strategy_interest" value="戦略B: 標準化と効率化（DXによる見える化）">
+              <span>戦略B: 標準化と効率化（DXによる見える化）</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="strategy_interest" value="戦略C: 付加価値の再定義（価格転嫁とブランディング）">
+              <span>戦略C: 付加価値の再定義（価格転嫁とブランディング）</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="strategy_interest" value="すべての戦略に関心がある">
+              <span>すべての戦略に関心がある</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="strategy_interest" value="特になし">
+              <span>特になし</span>
+            </label>
+          </div>
+        </div>
       </div>
 
-      <!-- Section 4: 自社の課題 -->
+      <!-- Section 4: 9項目セルフ診断 -->
       <div class="form-section">
         <div class="section-header">
-          <div class="section-icon purple">🏢</div>
+          <div class="section-icon purple">✅</div>
+          <div class="section-title">サプライチェーン9項目セルフ診断</div>
+        </div>
+
+        <div class="form-group">
+          <label>現在、貴社で「できている」項目をお選びください</label>
+          <span class="hint">本セミナーでご紹介した9項目の診断チェックリストです。チェックがついていない項目が、これからの取り組みポイントになります</span>
+
+          <div class="diagnosis-category">
+            <div class="diagnosis-category-title">① 特定供給源のリスク</div>
+            <div class="checkbox-group">
+              <label class="checkbox-option">
+                <input type="checkbox" name="diagnosis" value="主要仕入れ先が一社に集中していない">
+                <span>主要仕入れ先が一社に集中していない</span>
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="diagnosis" value="代替サプライヤーを2〜3社リストアップしている">
+                <span>代替サプライヤーを2〜3社リストアップしている</span>
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="diagnosis" value="BCP（事業継続計画）に仕入れリスクを明記している">
+                <span>BCP（事業継続計画）に仕入れリスクを明記している</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="diagnosis-category">
+            <div class="diagnosis-category-title">② ラストワンマイルのコスト</div>
+            <div class="checkbox-group">
+              <label class="checkbox-option">
+                <input type="checkbox" name="diagnosis" value="配送コストを売上比で可視化している（目安：売上比10%以下）">
+                <span>配送コストを売上比で可視化している（目安：売上比10%以下）</span>
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="diagnosis" value="まとめ発注・共同配送・置き配などを検討・実施している">
+                <span>まとめ発注・共同配送・置き配などを検討・実施している</span>
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="diagnosis" value="EC＋実店舗の在庫連携で無駄な輸送を削減している">
+                <span>EC＋実店舗の在庫連携で無駄な輸送を削減している</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="diagnosis-category">
+            <div class="diagnosis-category-title">③ 情報のデジタル化率</div>
+            <div class="checkbox-group">
+              <label class="checkbox-option">
+                <input type="checkbox" name="diagnosis" value="発注・確認・報告のうち過半がデジタル化されている">
+                <span>発注・確認・報告のうち過半がデジタル化されている</span>
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="diagnosis" value="一つのプロセスでもデジタル化に着手している（スモールスタート）">
+                <span>一つのプロセスでもデジタル化に着手している（スモールスタート）</span>
+              </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="diagnosis" value="全員が同じ情報を見られるダッシュボードを導入している">
+                <span>全員が同じ情報を見られるダッシュボードを導入している</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="diagnosis-hint">
+            💡 チェックがついていない項目は、これから取り組むべきポイントです。何項目できているか焦る必要はなく、できそうなところから着手することがスタートになります。
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: 貴社の現状 -->
+      <div class="form-section">
+        <div class="section-header">
+          <div class="section-icon teal">🏢</div>
           <div class="section-title">貴社の現状について</div>
         </div>
 
         <div class="form-group">
-          <label>現在、組織運営で特にお困りのことはどれですか？</label>
-          <span class="hint">当てはまるものをすべてお選びください</span>
-          <div class="checkbox-group">
-            <label class="checkbox-option">
-              <input type="checkbox" name="challenge" value="若手社員の早期離職が多い">
-              <span>若手社員の早期離職が多い</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="checkbox" name="challenge" value="中堅社員・幹部候補が辞めてしまう">
-              <span>中堅社員・幹部候補が辞めてしまう</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="checkbox" name="challenge" value="社員の育成体制が整っていない">
-              <span>社員の育成体制が整っていない</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="checkbox" name="challenge" value="管理職のマネジメントスキルに不安がある">
-              <span>管理職のマネジメントスキルに不安がある</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="checkbox" name="challenge" value="社内コミュニケーションが不足している">
-              <span>社内コミュニケーションが不足している</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="checkbox" name="challenge" value="社員のモチベーション・エンゲージメントが低い">
-              <span>社員のモチベーション・エンゲージメントが低い</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="checkbox" name="challenge" value="その他">
-              <span>その他</span>
-            </label>
+          <label>サプライチェーンに関して特にお困りの点・課題があればお聞かせください</label>
+          <span class="hint">原価高騰・納期遅延・人手不足・情報の断絶など、現在抱えていらっしゃる課題をご自由にご記入ください</span>
+          <textarea name="challenge_detail" rows="4"
+            placeholder="例）資材調達のリードタイムが読めず、工期が安定しない。BCP策定はこれからで、何から手をつけるべきか迷っている。"></textarea>
+        </div>
+      </div>
+
+      <!-- Section 6: 無料相談CTA -->
+      <div class="form-section" style="padding: 0; background: transparent; box-shadow: none; border: none;">
+        <div class="consult-card">
+          <div class="consult-card-content">
+            <div class="consult-icon">📅</div>
+            <h3>無料オンライン個別相談 受付中</h3>
+            <p>セミナー参加者の方には、講師・中坊との<br>無料オンライン個別相談をご案内しております。<br>ご都合のよい日時を3つほどお選びください。</p>
+            <a href="https://timerex.net/s/nmrshachou_7eef/8288e300" target="_blank" rel="noopener noreferrer"
+              class="consult-btn">
+              無料相談を予約する →
+            </a>
+            <div class="consult-sub">※外部予約サイト（TimeRex）に移動します</div>
           </div>
         </div>
       </div>
 
-      <!-- Section 5: 講師への相談 -->
-      <div class="form-section">
-        <div class="section-header">
-          <div class="section-icon blue">🤝</div>
-          <div class="section-title">講師への相談について</div>
-        </div>
-
-        <div class="form-group">
-          <label>講師に相談してみたいと思いますか？<span class="required">必須</span></label>
-          <span class="hint">社員定着やリーダーシップに関して、個別にご相談いただくことも可能です</span>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="consult" value="思う" required>
-              <span>思う（ぜひ相談したい）</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="consult" value="やや思う">
-              <span>やや思う（機会があれば相談したい）</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="consult" value="思わない">
-              <span>思わない（今のところ必要ない）</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>相談してみたい内容があれば、お聞かせください</label>
-          <textarea name="consult_detail" rows="3" placeholder="例）部下との信頼関係の築き方について相談したいです。"></textarea>
-        </div>
-      </div>
-
-      <!-- Section 6: ご意見・ご要望 -->
+      <!-- Section 7: ご意見・ご要望 -->
       <div class="form-section">
         <div class="section-header">
           <div class="section-icon orange">✉️</div>
@@ -850,7 +1072,8 @@
 
         <div class="form-group">
           <label>今後のセミナーで取り上げてほしいテーマ等がございましたら、ご自由にお書きください</label>
-          <textarea name="feedback" rows="4" placeholder="セミナーへのご感想、今後のご要望、講師へのメッセージなど、何でもお気軽にお書きください。"></textarea>
+          <textarea name="feedback" rows="4"
+            placeholder="セミナーへのご感想、今後のご要望、講師へのメッセージなど、何でもお気軽にお書きください。"></textarea>
         </div>
       </div>
 
@@ -869,7 +1092,12 @@
     <div class="thank-you" id="thankYou">
       <div class="thank-you-icon">✓</div>
       <h2>ご回答ありがとうございました</h2>
-      <p>アンケートを受け付けました。<br>いただいたご意見は今後のセミナー運営に<br>活用させていただきます。</p>
+      <p>アンケートを受け付けました。<br>いただいたご意見は今後のセミナー運営に活用させていただきます。<br><br>
+        無料オンライン相談をご希望の方は、<br>下記より日時をお選びください。</p>
+      <a href="https://timerex.net/s/nmrshachou_7eef/8288e300" target="_blank" rel="noopener noreferrer"
+        class="thank-you-cta">
+        📅 無料相談を予約する →
+      </a>
     </div>
   </div>
 
@@ -879,9 +1107,12 @@
 
   <script>
     // =====================================================
-    // ★★★ ここにGAS WebアプリのURLを貼り付けてください ★★★
+    // ★★★ 新スプレッドシート向け GAS Web App URL を貼り付けてください ★★★
+    // 旧URL（リーダーシップ版）: AKfycbzhX1mfnmrt0blytCshEHj6fU7D9IjotaRXZpOcYebnsqili9JK2HBlpyqdt4TsGGFZ
+    // 新スプレッドシート: 1MWEoV-y-LuTD4rIT--XFsqQ1OlhXLsYflc8QzoeW8Zo (gid=1307953343)
+    // GASコードは ../gas/Code.gs を参照
     // =====================================================
-    const GAS_URL = 'https://script.google.com/macros/s/AKfycbzhX1mfnmrt0blytCshEHj6fU7D9IjotaRXZpOcYebnsqili9JK2HBlpyqdt4TsGGFZ/exec';
+    const GAS_URL = 'YOUR_NEW_GAS_WEB_APP_URL_HERE';
     // =====================================================
 
     const form = document.getElementById('surveyForm');
@@ -891,7 +1122,7 @@
 
     // ---------- Progress Bar ----------
     function updateProgress() {
-      const allFields = form.querySelectorAll('input[required], textarea[required]');
+      const allFields = form.querySelectorAll('input[required], textarea[required], select[required]');
       const requiredGroups = {};
       let filled = 0, total = 0;
 
@@ -901,7 +1132,6 @@
           if (!requiredGroups[name]) {
             requiredGroups[name] = false;
             total++;
-            // 同じnameの全ラジオボタンをチェック
             if (form.querySelector(`input[name="${name}"]:checked`)) {
               requiredGroups[name] = true;
             }
@@ -911,6 +1141,9 @@
           if (field.value.trim() !== '') filled++;
         }
       });
+
+      total++;
+      if (form.querySelectorAll('input[name="reason"]:checked').length > 0) filled++;
 
       for (const name in requiredGroups) {
         if (requiredGroups[name]) filled++;
@@ -933,31 +1166,29 @@
     function collectFormData() {
       const data = {};
 
-      // テキスト・テキストエリア・セレクト
       data.company = form.company.value.trim();
       data.name = form.name.value.trim();
+      data.industry = form.industry.value;
       data.position = form.position.value;
       data.reason_other = form.reason_other.value.trim();
       data.helpful = form.helpful.value.trim();
       data.want_to_know = form.want_to_know.value.trim();
-      data.consult_detail = form.consult_detail.value.trim();
+      data.challenge_detail = form.challenge_detail.value.trim();
       data.feedback = form.feedback.value.trim();
 
-      // ラジオボタン
       const satisfaction = form.querySelector('input[name="satisfaction"]:checked');
       data.satisfaction = satisfaction ? satisfaction.value : '';
 
-      const consult = form.querySelector('input[name="consult"]:checked');
-      data.consult = consult ? consult.value : '';
+      const strategyInterest = form.querySelector('input[name="strategy_interest"]:checked');
+      data.strategy_interest = strategyInterest ? strategyInterest.value : '';
 
-      // チェックボックス（カンマ区切り）
       const reasons = Array.from(form.querySelectorAll('input[name="reason"]:checked'))
         .map(cb => cb.value);
       data.reason = reasons.join('、');
 
-      const challenges = Array.from(form.querySelectorAll('input[name="challenge"]:checked'))
+      const diagnosis = Array.from(form.querySelectorAll('input[name="diagnosis"]:checked'))
         .map(cb => cb.value);
-      data.challenge = challenges.join('、');
+      data.diagnosis = diagnosis.join('、');
 
       return data;
     }
@@ -966,7 +1197,6 @@
     function validateForm() {
       let isValid = true;
 
-      // Required text / textarea
       form.querySelectorAll('input[type="text"][required], textarea[required]').forEach(input => {
         const group = input.closest('.form-group');
         if (input.value.trim() === '') {
@@ -977,12 +1207,20 @@
         }
       });
 
-      // Required radios
-      ['satisfaction', 'consult'].forEach(name => {
+      form.querySelectorAll('select[required]').forEach(sel => {
+        const group = sel.closest('.form-group');
+        if (sel.value === '') {
+          group.classList.add('error');
+          isValid = false;
+        } else {
+          group.classList.remove('error');
+        }
+      });
+
+      ['satisfaction'].forEach(name => {
         if (!form.querySelector(`input[name="${name}"]:checked`)) isValid = false;
       });
 
-      // Required checkboxes (reason)
       if (form.querySelectorAll('input[name="reason"]:checked').length === 0) isValid = false;
 
       return isValid;
@@ -999,7 +1237,6 @@
         return;
       }
 
-      // Loading state
       submitBtn.classList.add('loading');
       submitBtn.disabled = true;
 
@@ -1008,12 +1245,11 @@
       try {
         const response = await fetch(GAS_URL, {
           method: 'POST',
-          mode: 'no-cors',  // GAS WebアプリはCORS非対応のため
+          mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         });
 
-        // no-cors の場合 response.ok は判定できないため、送信成功として扱う
         showSuccess();
 
       } catch (error) {
@@ -1033,9 +1269,11 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Remove error on input
     form.querySelectorAll('input, textarea, select').forEach(el => {
       el.addEventListener('input', function () {
+        this.closest('.form-group')?.classList.remove('error');
+      });
+      el.addEventListener('change', function () {
         this.closest('.form-group')?.classList.remove('error');
       });
     });
