@@ -28,8 +28,6 @@ const COLUMNS = [
   '参考になったこと',
   'もっと詳しく知りたいこと',
   '関心のある戦略',
-  '9項目診断_チェック済み項目',
-  '9項目診断_スコア（/9）',
   'お困りの点・課題',
   'ご意見・ご要望'
 ];
@@ -50,12 +48,6 @@ function doPost(e) {
       sheet.appendRow(COLUMNS);
     }
 
-    // 9項目診断スコア計算
-    const checkedItems = data.diagnosis || '';
-    const score = checkedItems
-      ? checkedItems.split('、').filter(function (v) { return v.length > 0; }).length
-      : 0;
-
     sheet.appendRow([
       new Date(),
       data.company || '',
@@ -68,8 +60,6 @@ function doPost(e) {
       data.helpful || '',
       data.want_to_know || '',
       data.strategy_interest || '',
-      checkedItems,
-      score,
       data.challenge_detail || '',
       data.feedback || ''
     ]);
@@ -103,7 +93,6 @@ function testAppendRow() {
         helpful: 'テスト：業務フロー標準化の事例が参考になった',
         want_to_know: 'テスト：戦略Bのスモールスタートを詳しく',
         strategy_interest: '戦略B: 標準化と効率化（DXによる見える化）',
-        diagnosis: '主要仕入れ先が一社に集中していない、代替サプライヤーを2〜3社リストアップしている',
         challenge_detail: 'テスト：BCP策定がこれから',
         feedback: 'テスト送信です'
       })
