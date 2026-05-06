@@ -1,19 +1,24 @@
 // =====================================================
 // セミナーアンケート GAS Web App (サプライチェーン版)
 // =====================================================
-// 送信先: https://docs.google.com/spreadsheets/d/1MWEoV-y-LuTD4rIT--XFsqQ1OlhXLsYflc8QzoeW8Zo/
-// 対象シート: gid=1307953343
+// 送信先 Spreadsheet: https://docs.google.com/spreadsheets/d/1MWEoV-y-LuTD4rIT--XFsqQ1OlhXLsYflc8QzoeW8Zo/
+// 対象シート: TARGET_SHEET_NAME (存在しなければ自動作成)
 //
-// デプロイ手順:
+// デプロイ手順 (新規):
 // 1. https://script.google.com/ で新規プロジェクト作成
 // 2. このコード全体を貼り付けて保存
 // 3. 「デプロイ」→「新しいデプロイ」→ 種類「ウェブアプリ」
 // 4. 実行ユーザー「自分」/ アクセスできるユーザー「全員」
-// 5. デプロイ後に発行された URL を public/index.html の GAS_URL に貼り付け
+// 5. 発行された URL を public/index.html の GAS_URL に貼り付け
+//
+// 既存デプロイの更新手順:
+// 1. このコードを貼り直して保存
+// 2. 「デプロイ」→「デプロイを管理」→ 既存の鉛筆アイコン
+// 3. バージョン: 「新バージョン」→「デプロイ」 (URLは変わらない)
 // =====================================================
 
 const SPREADSHEET_ID = '1MWEoV-y-LuTD4rIT--XFsqQ1OlhXLsYflc8QzoeW8Zo';
-const TARGET_SHEET_GID = 1307953343;
+const TARGET_SHEET_NAME = 'サプライチェーンアンケート回答';
 
 // 列順（変更時は public/index.html の collectFormData() と必ず揃える）
 const COLUMNS = [
@@ -37,15 +42,13 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents);
     const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
 
-    // gid 一致シートを優先、なければ先頭シートにフォールバック
-    let sheet = ss.getSheets().find(function (s) {
-      return s.getSheetId() === TARGET_SHEET_GID;
-    });
-    if (!sheet) sheet = ss.getSheets()[0];
-
-    // 1行目が空ならヘッダ行を自動投入
-    if (sheet.getLastRow() === 0) {
-      sheet.appendRow(COLUMNS);
+    // 専用シートを名前で取得。無ければ自動作成してヘッダ行を投入
+    let sheet = ss.getSheetByName(TARGET_SHEET_NAME);
+    if (!sheet) {
+      sheet = ss.insertSheet(TARGET_SHEET_NAME);
+      initSheetHeader(sheet);
+    } else if (sheet.getLastRow() === 0) {
+      initSheetHeader(sheet);
     }
 
     sheet.appendRow([
@@ -72,6 +75,14 @@ function doPost(e) {
       .createTextOutput(JSON.stringify({ status: 'error', message: String(err) }))
       .setMimeType(ContentService.MimeType.JSON);
   }
+}
+
+function initSheetHeader(sheet) {
+  sheet.appendRow(COLUMNS);
+  const headerRange = sheet.getRange(1, 1, 1, COLUMNS.length);
+  headerRange.setFontWeight('bold');
+  headerRange.setBackground('#eaf2f8');
+  sheet.setFrozenRows(1);
 }
 
 function doGet() {
